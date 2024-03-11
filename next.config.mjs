@@ -14,13 +14,15 @@ const nextConfig = {
                 hostname: 'localhost',
                 port: '',
             },
+            {
+                protocol: 'https',
+                hostname: 'ainextsanity.gogranddev.com',
+                port: '',
+            },
         ],
 
     },
-    output: "standalone",
-    server: {
-        host: '0.0.0.0',
-    },
+
 };
 
 export default nextConfig;
