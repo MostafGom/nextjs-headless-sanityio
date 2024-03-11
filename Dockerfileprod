@@ -1,0 +1,29 @@
+# Build stage
+FROM node:20.11.1-alpine3.18 as build
+
+WORKDIR /home/src/app/nextapp
+
+COPY package*.json ./
+
+RUN npm install
+
+COPY . .
+
+RUN npm run build
+
+# Production stage
+FROM node:20.11.1-alpine3.18
+
+WORKDIR /home/src/app/nextapp
+
+COPY --from=build --chown=node:node /home/src/app/nextapp/package*.json ./
+COPY --from=build --chown=node:node /home/src/app/nextapp/.next ./.next
+COPY --from=build --chown=node:node /home/src/app/nextapp/public ./public
+
+RUN npm install --production
+
+USER node
+
+EXPOSE 3000
+
+CMD ["npm", "start"]
