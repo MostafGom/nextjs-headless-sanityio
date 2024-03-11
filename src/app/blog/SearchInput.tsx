@@ -1,3 +1,4 @@
+'use client'
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 // import { getSanitySearchPosts } from './api'; // Assuming you have an API file
