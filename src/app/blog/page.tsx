@@ -1,10 +1,8 @@
-import React, { Suspense } from 'react';
+import React from 'react';
 import { getSanityPostsPaginatedList } from '@/lib/sanityHelpers';
-import PageTemplateDefault from '@/components/PageTemplateDefault';
-import { useSearchParams } from 'next/navigation'
-import { Button } from '@/components/ui/button';
 import PostCard from '@/components/PostCard';
-import PaginationButton from '@/app/blog/PaginationButton';
+import PaginationButton from '@/components/PaginationButton';
+// import PaginationButton from '@/components/PaginationButton';
 
 export const dynamic = 'force-dynamic'
 
@@ -29,20 +27,3 @@ export default async function Page({ searchParams }:
         </div>
     );
 }
-
-
-// export default async function Page({ searchParams }:
-//     {
-//         searchParams:
-//         { [key: string]: string | undefined }
-//     }) {
-//     const page = searchParams['page'] || '1'
-//     const cursor = searchParams['cursor'] || null
-
-//     return (
-
-//         <Suspense fallback={<MyLoading />}>
-//             <PaginationPosts searchParams={searchParams} />
-//         </Suspense>
-//     )
-// }

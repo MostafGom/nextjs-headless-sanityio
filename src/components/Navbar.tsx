@@ -5,8 +5,6 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import ModeToggle from '@/components/ModeToggles'
-import { urlForSanityImage } from '@/lib/sanityClient'
-
 
 
 function classNames(...classes: any) {

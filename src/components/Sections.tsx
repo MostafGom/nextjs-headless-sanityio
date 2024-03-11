@@ -1,4 +1,4 @@
-import { urlForSanityImage } from "@/lib/sanityClient";
+import { sanityImageBuilder } from "@/lib/sanityClient";
 import { PortableText } from "@portabletext/react";
 import Image from "next/image";
 import { TypographyH4 } from "./Typography";
@@ -13,7 +13,7 @@ export function Sections({ sections }: { sections: any }) {
                     <div key={section._key} className="flex flex-col md:flex-row items-stretch justify-center my-16 rounded-mycustomrounded shadow-3xllight dark:shadow-3xldark dark:bg-gray-900 ">
                         <div className="relative w-full h-96 basis-full md:basis-5/12 rounded-mycustomrounded">
                             <Image
-                                src={urlForSanityImage(section.image).width(1920).url()}
+                                src={sanityImageBuilder.image(section.image).width(800).url()}
                                 alt={section.headline}
                                 className="w-full h-full  object-cover rounded-l-mycustomrounded"
                                 width={600}
