@@ -1,0 +1,20 @@
+version: '3.8'
+services:
+  nextsanityblogappprod:
+    build:
+      context: ./nextapp
+      dockerfile: Dockerfileprod
+    container_name: nextsanityioblogprod
+    working_dir: /home/src/app/nextapp
+    networks:
+      - mylocalnetwork
+    volumes:
+      # - ./nextapp:/home/src/app/nextapp
+      - /home/src/app/nextapp/node_modules
+      - /home/src/app/nextapp/.next
+    # ports:
+    #   - "0.0.0.0:3003:3000"
+
+networks:
+  mylocalnetwork:
+    external: true
