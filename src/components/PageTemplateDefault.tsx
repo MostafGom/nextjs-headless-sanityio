@@ -1,9 +1,8 @@
 import React from 'react';
 import { PortableText } from '@portabletext/react';
 import { myPortableTextComponents } from '@/components/PortableTexCustomComponent';
-import { sanityImageBuilder } from '@/lib/sanityClient';
+import { getSanityImageUrl } from '@/lib/sanityClient';
 import Image from 'next/image';
-import { PageContentType } from '@/types';
 
 
 export default function PageTemplateDefault({ pageContent }: any) {
@@ -16,7 +15,7 @@ export default function PageTemplateDefault({ pageContent }: any) {
                 </div>
                 <div className="container  max-w-3xl">
                     <div className="mt-4 ml-0 md:mx-auto">
-                        <Image src={sanityImageBuilder.image(pageContent.mainImage).width(500).url()} alt="hello" width={500} height={500} className='rounded-mycustomrounded ml-0 md:mx-auto w-full' />
+                        <Image src={getSanityImageUrl(pageContent.mainImage, 500)} alt="hello" width={500} height={500} className='rounded-mycustomrounded ml-0 md:mx-auto w-full' />
                     </div>
                 </div>
                 <div className="container ml-0 md:mx-auto max-w-3xl">

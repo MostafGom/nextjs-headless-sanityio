@@ -1,8 +1,6 @@
 import React from 'react'
-import { getSanityNavigationMenu } from '@/lib/sanityClient'
+import { getSanityImageUrl, getSanityNavigationMenu } from '@/lib/sanityClient'
 import Navbar from '@/components/Navbar';
-import { sanityImageBuilder } from '@/lib/sanityClient';
-import { SanityImageSource } from '@sanity/image-url/lib/types/types';
 interface NavbarProps {
     _id: string;
     title: string;
@@ -17,7 +15,7 @@ interface NavbarProps {
 
 export async function NavbarServer() {
     const nav = await getSanityNavigationMenu('main') as NavbarProps;
-    const logo = sanityImageBuilder.image(nav.logo).width(150).url() || "/logo-demo.png";
+    const logo = getSanityImageUrl(nav.logo, 150) || "/logo-demo.png";
 
     return (
         <>

@@ -1,4 +1,4 @@
-import { getSanityPost, sanityImageBuilder } from "@/lib/sanityClient"
+import { getSanityPost, getSanityImageUrl } from "@/lib/sanityClient"
 import PostTemplateDefault from "@/components/PostTemplateDefault";
 import { PortableText } from "@portabletext/react";
 import { Metadata, ResolvingMetadata } from "next";
@@ -17,7 +17,7 @@ export async function generateMetadata(
 ): Promise<Metadata> {
     const post = await getSanityPost(params.slug)
     // optionally access and extend (rather than replace) parent metadata
-    const Image = sanityImageBuilder.image(post.mainImage).width(500).url()
+    const Image = getSanityImageUrl(post.mainImage, 500)
     return {
         title: post.metaData.metaTitle,
         description: post.metaData.metaDescription,
