@@ -1,5 +1,5 @@
 import React from 'react';
-import { getSanityPageContent, sanityImageBuilder } from '@/lib/sanityClient';
+import { getSanityImageUrl, getSanityPageContent } from '@/lib/sanityClient';
 import PageTemplateDefault from '@/components/PageTemplateDefault';
 import { Metadata, ResolvingMetadata } from 'next';
 
@@ -15,7 +15,7 @@ export async function generateMetadata(
 ): Promise<Metadata> {
     const page = await getSanityPageContent(params.pageslug)
     // optionally access and extend (rather than replace) parent metadata
-    const Image = sanityImageBuilder.image(page.mainImage).width(500).url()
+    const Image = getSanityImageUrl(page.mainImage, 500)
     return {
         title: page.metaData.metaTitle,
         description: page.metaData.metaDescription,

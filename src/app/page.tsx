@@ -5,9 +5,8 @@ import { Suspense } from "react";
 import { Button } from "@/components/ui/button";
 import { TypographyH1, TypographyH3 } from "@/components/Typography";
 import DefaultSectionWrapper from "@/components/PageSectionWrapper";
-import { getSanityHomePage } from "@/lib/sanityClient";
+import { getSanityHomePage, getSanityImageUrl } from "@/lib/sanityClient";
 import { Acoordion } from "@/components/FAQ";
-import { sanityImageBuilder } from "@/lib/sanityClient";
 import { Sections } from "@/components/Sections";
 
 export default async function Home() {
@@ -28,7 +27,7 @@ export default async function Home() {
         </div>
         <div className="absolute top-0 left-0 w-full h-full">
           <Image
-            src={sanityImageBuilder.image(pageContent.heroImage).width(800).url()}
+            src={getSanityImageUrl(pageContent.heroImage, 800)}
             alt="Background Image"
             className="w-full h-full object-cover"
             width={1920}

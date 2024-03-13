@@ -1,5 +1,7 @@
 import { createClient } from 'next-sanity';
 import imageUrlBuilder from '@sanity/image-url'
+import { HomePage, Page } from '@/types';
+import { SanityImageSource } from '@sanity/image-url/lib/types/types';
 
 
 // Create a Sanity client using the environment variables
@@ -12,7 +14,13 @@ export const sanityClient = createClient({
 });
 
 export const sanityImageBuilder = imageUrlBuilder(sanityClient)
-
+export const getSanityImageUrl = (image: SanityImageSource | undefined, width: number) => {
+    if (image) {
+        return sanityImageBuilder.image(image).width(width).url()
+    } else {
+        return ""
+    }
+}
 
 export async function getSanityPost(slug: string) {
     const post = await sanityClient.fetch(`*[_type == "post" && slug.current == $slug]`, { slug })
@@ -68,14 +76,14 @@ export async function getSanityNavigationMenu(menuName: string) {
     return menu[0]
 }
 
-export async function getSanityHomePage() {
+export async function getSanityHomePage(): Promise<HomePage> {
     const homepage = await sanityClient.fetch(`*[_type == "homepage" && title=="Home"]{...,
       "faqs":faqs->{...,"faqItems":faqItems[]->{...}}
     }`)
     return homepage[0]
 }
 
-export async function getSanityPageContent(pageName: string) {
+export async function getSanityPageContent(pageName: string): Promise<Page> {
     const page = await sanityClient.fetch(`*[_type == "page" && slug.current == $pageName]`, { pageName })
     return page[0]
 }
