@@ -1,5 +1,5 @@
 import React from 'react';
-import { getSanityPageContent } from '@/lib/sanityHelpers';
+import { getSanityPageContent } from '@/lib/sanityClient';
 import PageTemplateDefault from '@/components/PageTemplateDefault';
 
 

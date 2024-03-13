@@ -1,5 +1,5 @@
 import React from 'react'
-import { getSanityNavigationMenu } from '@/lib/sanityHelpers'
+import { getSanityNavigationMenu } from '@/lib/sanityClient'
 import Navbar from '@/components/Navbar';
 import { sanityImageBuilder } from '@/lib/sanityClient';
 import { SanityImageSource } from '@sanity/image-url/lib/types/types';
