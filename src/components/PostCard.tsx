@@ -32,7 +32,7 @@ export default function PostCard({ post }: { post: PostType }) {
             </CardHeader>
             <CardContent>
                 <div>
-                    <Link href={`/post/${post?.slug?.current}`}>
+                    <Link href={`/posts/${post?.slug?.current}`}>
                         <Image
                             width={250}
                             height={50}
@@ -46,7 +46,7 @@ export default function PostCard({ post }: { post: PostType }) {
                 </div>
             </CardContent>
             <CardFooter className="flex justify-between" >
-                <Link href={`/post/${post?.slug?.current}`} className="w-full">
+                <Link href={`/posts/${post?.slug?.current}`} className="w-full">
                     <Button className="w-full">View</Button>
                 </Link>
             </CardFooter>

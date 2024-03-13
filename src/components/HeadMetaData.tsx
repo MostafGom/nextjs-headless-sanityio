@@ -1,6 +1,6 @@
 import Head from 'next/head';
 
-export default function HeadMetaData({ title = "AI Blog", description = "Blog where all content generated using AI", keywords = "Nextjs, Sanityio, ChatGPT, Google Gemini", ogTitle = "AI Blog", ogDescription = "Blog where all content generated using AI", ogImage = "/bg_hero1img.jpeg", ogUrl = "/bg_hero1img.jpeg", twitterCard = "AI Blog", children }: { title?: string, description?: string, keywords?: string, ogTitle?: string, ogDescription?: string, ogImage?: string, ogUrl?: string, twitterCard?: string, children: React.ReactNode }) {
+export default function HeadMetaData({ title = "AI Blog", description = "Blog where all content generated using AI", keywords = "Nextjs, Sanityio, ChatGPT, Google Gemini", ogTitle = "AI Blog", ogDescription = "Blog where all content generated using AI", ogImage = "/bg_hero1img.jpeg", ogUrl = "/bg_hero1img.jpeg", twitterCard = "AI Blog" }: { title?: string, description?: string, keywords?: string, ogTitle?: string, ogDescription?: string, ogImage?: string, ogUrl?: string, twitterCard?: string }) {
 
     return (
         <>

@@ -76,7 +76,7 @@ export async function getSanityHomePage() {
 }
 
 export async function getSanityPageContent(pageName: string) {
-    const page = await sanityClient.fetch(`*[_type == "page" && title == $pageName]`, { pageName })
+    const page = await sanityClient.fetch(`*[_type == "page" && slug.current == $pageName]`, { pageName })
     return page[0]
 }
 

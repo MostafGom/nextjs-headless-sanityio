@@ -7,7 +7,7 @@ export default function PaginationButton({ cursor, page }: { cursor: string | nu
 
     const router = useRouter()
     function moveForward() {
-        router.push(`/blog?page=${Number(page) + 1}&cursor=${cursor}`)
+        router.push(`/posts?page=${Number(page) + 1}&cursor=${cursor}`)
     }
     function moveBackward() {
         router.back()
