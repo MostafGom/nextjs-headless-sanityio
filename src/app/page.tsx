@@ -5,7 +5,7 @@ import { Suspense } from "react";
 import { Button } from "@/components/ui/button";
 import { TypographyH1, TypographyH3 } from "@/components/Typography";
 import DefaultSectionWrapper from "@/components/PageSectionWrapper";
-import { getSanityHomePage } from "@/lib/sanityHelpers";
+import { getSanityHomePage } from "@/lib/sanityClient";
 import { Acoordion } from "@/components/FAQ";
 import { sanityImageBuilder } from "@/lib/sanityClient";
 import { Sections } from "@/components/Sections";
@@ -20,7 +20,7 @@ export default async function Home() {
         <div className="text-center z-10 w-4/5 max-w-4xl">
           <TypographyH1 content={pageContent.heroHeadline || "Full Blog Powered By LLM"} className="mt-10 text-white" />
           <TypographyH3 content={pageContent.heroSubHeadline || "Using SanityIO as headless CMS and NextJS+Shadcn in front End. a blog about tech where all articles are generated using LLM."} className="mt-10 text-white" />
-          <Link href="/blog" >
+          <Link href="/blog/s" >
             <Button className="w-9/12 mt-16 px-12 py-8 hover:bg-blue-600 text-2xl font-bold">
               {pageContent.heroCta || "Read Our Blogs"}
             </Button>

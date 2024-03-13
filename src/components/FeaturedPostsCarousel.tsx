@@ -1,4 +1,4 @@
-import { getSanityFeaturedPostsList } from '@/lib/sanityHelpers'
+import { getSanityFeaturedPostsList } from '@/lib/sanityClient'
 import PostCard from '@/components/PostCard'
 import { CarouselItem } from '@/components/ui/carousel'
 import CarouselWrapper from '@/components/CarouselWrapper'

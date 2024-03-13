@@ -11,19 +11,30 @@ COPY . .
 
 RUN npm run build
 
-# Production stage
-FROM node:20.11.1-alpine3.18
-
-WORKDIR /home/src/app/nextapp
-
-COPY --from=build --chown=node:node /home/src/app/nextapp/package*.json ./
-COPY --from=build --chown=node:node /home/src/app/nextapp/.next ./.next
-COPY --from=build --chown=node:node /home/src/app/nextapp/public ./public
-
-RUN npm install --production
+RUN chown -R node:node ./node_modules 
+RUN chown -R node:node ./.next 
+RUN chown -R node:node ./public 
 
 USER node
 
 EXPOSE 3000
 
 CMD ["npm", "start"]
+
+# Production stage
+# FROM node:20.11.1
+
+# WORKDIR /home/src/app/nextapp
+
+# COPY --from=build --chown=node:node /home/src/app/nextapp/package*.json ./
+# COPY --from=build --chown=node:node /home/src/app/nextapp/.next ./.next
+# COPY --from=build --chown=node:node /home/src/app/nextapp/public ./public
+# COPY --from=build --chown=node:node /home/src/app/nextapp/node_modules ./node_modules
+
+# # RUN npm install --omit=dev
+
+# USER node
+
+# EXPOSE 3000
+
+# CMD ["npm", "start"]

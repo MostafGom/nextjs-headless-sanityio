@@ -1,18 +1,19 @@
 import React from 'react';
-import { getSanityPostsPaginatedList } from '@/lib/sanityHelpers';
+import { getSanityPostsPaginatedList } from '@/lib/sanityClient';
 import PostCard from '@/components/PostCard';
 import PaginationButton from '@/components/PaginationButton';
-// import PaginationButton from '@/components/PaginationButton';
 
 export const dynamic = 'force-dynamic'
 
-export default async function Page({ searchParams }:
+export default async function Page({ params, searchParams }:
     {
-        searchParams:
-        { [key: string]: string | undefined }
+        params: any
+        searchParams: any
     }) {
     const page = searchParams['page'] || '1'
     const cursor = searchParams['cursor'] || null
+    console.log('page', page);
+    console.log('cursor', cursor);
 
     const { posts, lastId } = await getSanityPostsPaginatedList(cursor);
 
