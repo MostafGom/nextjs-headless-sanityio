@@ -4,8 +4,7 @@ import PostCard from '@/components/PostCard';
 import PaginationButton from '@/components/PaginationButton';
 import { Metadata, ResolvingMetadata } from 'next';
 
-export const dynamic = 'force-dynamic'
-
+export const revalidate = 60
 
 type Props = {
     params: { slug: string }
