@@ -1,6 +1,6 @@
 import { createClient } from 'next-sanity';
 import imageUrlBuilder from '@sanity/image-url'
-import { HomePage, Page } from '@/types';
+import { HomePage, NavMenu, Page, Post, PostCard } from '@/types';
 import { SanityImageSource } from '@sanity/image-url/lib/types/types';
 
 
@@ -14,7 +14,7 @@ export const sanityClient = createClient({
 });
 
 export const sanityImageBuilder = imageUrlBuilder(sanityClient)
-export const getSanityImageUrl = (image: SanityImageSource | undefined, width: number) => {
+export const getSanityImageUrl = (image: SanityImageSource | undefined, width: number): string => {
     if (image) {
         return sanityImageBuilder.image(image).width(width).url()
     } else {
@@ -23,22 +23,16 @@ export const getSanityImageUrl = (image: SanityImageSource | undefined, width: n
 }
 
 export async function getSanityPost(slug: string) {
-    const post = await sanityClient.fetch(`*[_type == "post" && slug.current == $slug]`, { slug })
+    const post: Post[] = await sanityClient.fetch(`*[_type == "post" && slug.current == $slug]`, { slug })
     return post[0]
 }
 
-// export async function getSanityPostsList() {
-//     const posts = await sanityClient.fetch(`*[_type == "post"]{_id,title,slug,mainImage,'author':author->{_id,name,image}}`)
-//     return posts
-// }
 
 export async function getSanityPostsPaginatedList(lastId: string | null, perPage: number = 2) {
-    let posts = []
+    let posts: PostCard[] = []
     if (lastId === null) {
         posts = await sanityClient.fetch(`*[_type == "post"] | order(_id) [0...$perPage]{_id,title,slug,mainImage,'author':author->{_id,name,image}}`, { perPage })
         let cursor = posts[posts.length - 1]._id
-        console.log(cursor);
-
         return { posts, lastId: cursor }
     } else {
         posts = await sanityClient.fetch(
@@ -56,20 +50,19 @@ export async function getSanityPostsPaginatedList(lastId: string | null, perPage
 }
 
 export async function getSanityFeaturedPostsList() {
-    const posts = await sanityClient.fetch(`*[_type == "post" && featured==true]{_id,title,slug,mainImage,'author':author->{_id,name,image}}`)
+    const posts: PostCard[] = await sanityClient.fetch(`*[_type == "post" && featured==true]{_id,title,slug,mainImage,'author':author->{_id,name,image}}`)
     return posts
 }
 
 export async function getSanityNavigationMenu(menuName: string) {
-    const menu = await sanityClient.fetch(`*[_type=='menu' &&  title == $menuName] {
+    const menu: NavMenu[] = await sanityClient.fetch(`*[_type=='menu' &&  title == $menuName] {
         _id,
         title,
-        'menuItems': menuItems[]->{ // Use '->' to follow references
+        'menuItems': menuItems[]->{ 
           _id,
           title,
           url,
           path
-          // Add other properties you want to retrieve for each menu item
         },
         logo
       }`, { menuName })
@@ -77,14 +70,14 @@ export async function getSanityNavigationMenu(menuName: string) {
 }
 
 export async function getSanityHomePage(): Promise<HomePage> {
-    const homepage = await sanityClient.fetch(`*[_type == "homepage" && title=="Home"]{...,
+    const homepage: HomePage[] = await sanityClient.fetch(`*[_type == "homepage" && title=="Home"]{...,
       "faqs":faqs->{...,"faqItems":faqItems[]->{...}}
     }`)
     return homepage[0]
 }
 
 export async function getSanityPageContent(pageName: string): Promise<Page> {
-    const page = await sanityClient.fetch(`*[_type == "page" && slug.current == $pageName]`, { pageName })
+    const page: Page[] = await sanityClient.fetch(`*[_type == "page" && slug.current == $pageName]`, { pageName })
     return page[0]
 }
 
