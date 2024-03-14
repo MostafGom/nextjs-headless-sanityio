@@ -3,6 +3,7 @@ import { getSanityImageUrl, getSanityPageContent } from '@/lib/sanityClient';
 import PageTemplateDefault from '@/components/PageTemplateDefault';
 import { Metadata, ResolvingMetadata } from 'next';
 
+export const revalidate = 60
 
 type Props = {
     params: { pageslug: string }

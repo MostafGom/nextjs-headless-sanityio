@@ -3,8 +3,7 @@ import PostTemplateDefault from "@/components/PostTemplateDefault";
 import { PortableText } from "@portabletext/react";
 import { Metadata, ResolvingMetadata } from "next";
 
-export const dynamic = 'force-dynamic'
-
+export const revalidate = 60
 
 type Props = {
     params: { slug: string }

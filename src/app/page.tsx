@@ -9,6 +9,8 @@ import { getSanityHomePage, getSanityImageUrl } from "@/lib/sanityClient";
 import { Acoordion } from "@/components/FAQ";
 import { Sections } from "@/components/Sections";
 
+export const revalidate = 60
+
 export default async function Home() {
   const pageContent = await getSanityHomePage();
 
