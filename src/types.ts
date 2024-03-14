@@ -68,6 +68,19 @@ export type Page = {
     body: SerializedBlock[]
 }
 
+export type NavMenu = {
+    _id: string
+    title: string
+    menuItems: MenuItem[]
+    logo: SanityImageSource
+}
+export type MenuItem = {
+    _id: string
+    title: string
+    url: string
+    path: string
+
+}
 export type DefaultTypographyProps = {
     content: string;
     className?: string;
